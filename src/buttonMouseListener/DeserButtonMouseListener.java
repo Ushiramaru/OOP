@@ -11,6 +11,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -23,7 +25,22 @@ public class DeserButtonMouseListener implements MouseListener {
 
     public String ReadInStr(String name) throws FileNotFoundException {
         String s = "";
-        Scanner in = new Scanner(new File(name));
+        File f = new File(name);
+        if (!(f.exists() && ! f.isDirectory())) {
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                FileWriter fileWriter = new FileWriter(f);
+                fileWriter.write("[]");
+                fileWriter.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Scanner in = new Scanner(f);
         while(in.hasNext())
             s += in.nextLine() + "\r\n";
         in.close();

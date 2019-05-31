@@ -1,0 +1,35 @@
+[
+  {
+    "type": "shape.Line",
+    "fPoint": {
+      "x": 429,
+      "y": 58
+    },
+    "sPoint": {
+      "x": 177,
+      "y": 432
+    }
+  },
+  {
+    "type": "shape.Line",
+    "fPoint": {
+      "x": 344,
+      "y": 322
+    },
+    "sPoint": {
+      "x": 473,
+      "y": 67
+    }
+  },
+  {
+    "type": "shape.Line",
+    "fPoint": {
+      "x": 472,
+      "y": 68
+    },
+    "sPoint": {
+      "x": 191,
+      "y": 32
+    }
+  }
+]
