@@ -1,10 +1,8 @@
-package shape;
+package shape.modules;
 
 import java.awt.*;
 import java.util.ArrayList;
-
-//pool literal
-//singleton pattern
+import shape.Shape;
 
 public class Line extends Shape {
 

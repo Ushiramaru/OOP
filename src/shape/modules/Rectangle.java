@@ -1,7 +1,8 @@
-package shape;
+package shape.modules;
 
 import java.awt.*;
 import java.util.ArrayList;
+import shape.Shape;
 
 public class Rectangle extends Shape {
 

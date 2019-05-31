@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public abstract class Shape {
 
-    Shape() {
+    public Shape() {
         typeName = getClass().getName();
     }
 

@@ -3,10 +3,8 @@ package buttonMouseListener;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import pen.Pen;
-import shapeArray.*;
 import shape.Shape;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -14,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DeserButtonMouseListener implements MouseListener {

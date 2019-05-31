@@ -1,9 +1,10 @@
-package shape;
+package shape.modules;
 
 import java.awt.*;
 import java.util.ArrayList;
+import shape.Shape;
 
-public class Circle extends Square {
+public class Circle extends Shape {
 
     @Override
     public Shape clone() {
@@ -42,4 +43,21 @@ public class Circle extends Square {
         }
         return pointArray;
     }
+
+    private void fixPoint() {
+        if (Math.abs(fPoint.x - sPoint.x) <= Math.abs(fPoint.y - sPoint.y)) {
+            if (fPoint.y <= sPoint.y) {
+                sPoint.y = fPoint.y + Math.abs(fPoint.x - sPoint.x);
+            } else {
+                sPoint.y = fPoint.y - Math.abs(fPoint.x - sPoint.x);
+            }
+        } else {
+            if (fPoint.x <= sPoint.x) {
+                sPoint.x = fPoint.x + Math.abs(fPoint.y - sPoint.y);
+            } else {
+                sPoint.x = fPoint.x - Math.abs(fPoint.y - sPoint.y);
+            }
+        }
+    }
+
 }
