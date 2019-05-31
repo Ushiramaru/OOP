@@ -20,7 +20,7 @@ public class DeserButtonMouseListener implements MouseListener {
 
     }
 
-    public String ReadInStr(String name) throws FileNotFoundException {
+    private String ReadInStr(String name) throws FileNotFoundException {
         String s = "";
         File f = new File(name);
         if (!(f.exists() && ! f.isDirectory())) {
@@ -62,13 +62,16 @@ public class DeserButtonMouseListener implements MouseListener {
         try {
             Shape[] arrItemsDes = gson.fromJson(json, itemsArrType);
 
-            for (int i = 0; i < arrItemsDes.length; i++) {
-                Pen.setSelectedShape(arrItemsDes[i]);
-                Pen.drawShape();
+            assert arrItemsDes != null;
+            for (Shape arrItemsDe : arrItemsDes) {
+                if (arrItemsDe != null) {
+//                    System.out.println(arrItemsDe.getClass().getSimpleName());
+                    Pen.setSelectedShape(arrItemsDe);
+                    Pen.drawShape();
+                }
             }
         } catch (Exception el){
             el.printStackTrace();
-            //ErrorShow("err.fxml");
         }
     }
 

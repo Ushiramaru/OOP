@@ -15,7 +15,8 @@ class JsonDeserializerWithInheritance<Shape> implements JsonDeserializer<Shape> 
         try {
             clazz = Class.forName(className);
         } catch (ClassNotFoundException e) {
-            throw new JsonParseException(e.getMessage());
+//            throw new JsonParseException(e.getMessage());
+            return null;
         }
         return context.deserialize(jsonObject, clazz);
     }
