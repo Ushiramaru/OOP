@@ -12,6 +12,7 @@ public class Paint extends JFrame {
 
     private JPanel panelDraw;
     private ArrayList<shape.Shape> shapes;
+    private Canvas canvas;
 
     public Paint(String name) {
         super(name);
@@ -80,10 +81,15 @@ public class Paint extends JFrame {
 
     public void setGraphics() {
         Canvas canvas = new Canvas();
+        this.canvas = canvas;
         canvas.setSize(panelDraw.getWidth(),panelDraw.getHeight());
         canvas.setBackground(Color.WHITE);
         canvas.addMouseListener(new DrawPanelMouseListener());
         panelDraw.add(canvas);
         Pen.setGraphics(canvas.getGraphics());
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
     }
 }

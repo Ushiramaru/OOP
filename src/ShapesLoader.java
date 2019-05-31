@@ -46,21 +46,22 @@ public class ShapesLoader extends ClassLoader {
             if (modules != null) {
                 for (String module : modules) {
                     if (!Files.isDirectory(Path.of(pathBin + module))) {
-                        String moduleName;
                         try {
-                            moduleName = module.substring(0,module.lastIndexOf(".class"));
+                            String moduleName = module.substring(0,module.lastIndexOf(".class"));
+                            Class loadedClass = this.loadClass(moduleName);
+                            if (loadedClass != null) {
+                                if (Shape.class.isAssignableFrom(loadedClass)) {
+                                    shapes.add((Shape) loadedClass.newInstance());
+                                } else {
+                                    System.out.println(module + " isn't Shape");
+                                }
+                            }
+                        } catch (ClassFormatError e) {
+                            System.out.println(module + " isn't Shape");
                         } catch (IndexOutOfBoundsException e) {
                             System.out.println(module + " isn't class extension");
-                            continue;
                         }
-                        Class loadedClass = this.loadClass(moduleName);
-                        if (loadedClass != null) {
-                            if (Shape.class.isAssignableFrom(loadedClass)) {
-                                shapes.add((Shape) loadedClass.newInstance());
-                            } else {
-                                System.out.println(module + " isn't Shape");
-                            }
-                        }
+
                     }
                 }
             }

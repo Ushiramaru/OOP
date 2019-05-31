@@ -16,7 +16,8 @@ public class MainClass {
         mainFrame.setShapes(loader.getShapes());
         mainFrame.setPaintConfiguration();
         mainFrame.setGraphics();
-        mainFrame.setSize(500,500);
+        mainFrame.setSize(mainFrame.getCanvas().getWidth(),mainFrame.getCanvas().getHeight());
+        mainFrame.setResizable(false);
     }
 
 }
