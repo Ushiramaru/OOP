@@ -61,7 +61,6 @@ public class ShapesLoader extends ClassLoader {
                         } catch (IndexOutOfBoundsException e) {
                             System.out.println(module + " isn't class extension");
                         }
-
                     }
                 }
             }

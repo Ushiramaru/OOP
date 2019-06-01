@@ -8,6 +8,7 @@ public class MainClass {
 
     public static void main(String[] args) {
         String pathLoad = new File(URLDecoder.decode(MainClass.class.getProtectionDomain().getCodeSource().getLocation().getPath(), StandardCharsets.UTF_8)).getPath();
+        pathLoad = pathLoad.substring(0,pathLoad.lastIndexOf("\\"));
         ShapesLoader loader = new ShapesLoader(pathLoad + "\\shape\\modules\\", "shape.modules",ClassLoader.getSystemClassLoader());
         loader.startLoad();
 

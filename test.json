@@ -1,35 +1,57 @@
 [
   {
-    "type": "shape.Line",
+    "type": "shape.modules.Line",
     "fPoint": {
-      "x": 429,
-      "y": 58
+      "x": 518,
+      "y": 133
     },
     "sPoint": {
-      "x": 177,
-      "y": 432
+      "x": 214,
+      "y": 286
     }
   },
   {
-    "type": "shape.Line",
+    "type": "shape.modules.Line",
     "fPoint": {
-      "x": 344,
-      "y": 322
+      "x": 208,
+      "y": 300
     },
     "sPoint": {
-      "x": 473,
-      "y": 67
+      "x": 97,
+      "y": 92
     }
   },
   {
-    "type": "shape.Line",
+    "type": "shape.modules.Line",
     "fPoint": {
-      "x": 472,
-      "y": 68
+      "x": 412,
+      "y": 84
     },
     "sPoint": {
-      "x": 191,
-      "y": 32
+      "x": 596,
+      "y": 282
+    }
+  },
+  {
+    "type": "shape.modules.Circle",
+    "fPoint": {
+      "x": 741,
+      "y": 137
+    },
+    "sPoint": {
+      "x": 846,
+      "y": 242
+    }
+  },
+  {
+    "type": "shape.modules.Circle",
+    "fPoint": {
+      "x": 846,
+      "y": 368
+    },
+    "sPoint": {
+      "x": 673,
+      "y": 195
     }
   }
 ]
