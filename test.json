@@ -1,57 +1,116 @@
 [
   {
-    "type": "shape.modules.Line",
+    "subShapes": [
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 0,
+          "y": 0
+        },
+        "sPoint": {
+          "x": 432,
+          "y": 270
+        }
+      },
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 432,
+          "y": 270
+        },
+        "sPoint": {
+          "x": 71,
+          "y": 46
+        }
+      },
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 71,
+          "y": 46
+        },
+        "sPoint": {
+          "x": 256,
+          "y": 199
+        }
+      },
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 256,
+          "y": 199
+        },
+        "sPoint": {
+          "x": 105,
+          "y": 121
+        }
+      },
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 105,
+          "y": 121
+        },
+        "sPoint": {
+          "x": 173,
+          "y": 163
+        }
+      },
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 173,
+          "y": 163
+        },
+        "sPoint": {
+          "x": 118,
+          "y": 140
+        }
+      },
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 118,
+          "y": 140
+        },
+        "sPoint": {
+          "x": 135,
+          "y": 148
+        }
+      },
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 135,
+          "y": 148
+        },
+        "sPoint": {
+          "x": 128,
+          "y": 143
+        }
+      },
+      {
+        "type": "shape.modules.Rectangle",
+        "fPoint": {
+          "x": 128,
+          "y": 143
+        },
+        "sPoint": {
+          "x": 132,
+          "y": 145
+        }
+      }
+    ],
+    "height": 270,
+    "width": 432,
+    "type": "shape.userShape.UserShape",
     "fPoint": {
-      "x": 518,
-      "y": 133
+      "x": 264,
+      "y": 76
     },
     "sPoint": {
-      "x": 214,
-      "y": 286
-    }
-  },
-  {
-    "type": "shape.modules.Line",
-    "fPoint": {
-      "x": 208,
-      "y": 300
-    },
-    "sPoint": {
-      "x": 97,
-      "y": 92
-    }
-  },
-  {
-    "type": "shape.modules.Line",
-    "fPoint": {
-      "x": 412,
-      "y": 84
-    },
-    "sPoint": {
-      "x": 596,
-      "y": 282
-    }
-  },
-  {
-    "type": "shape.modules.Circle",
-    "fPoint": {
-      "x": 741,
-      "y": 137
-    },
-    "sPoint": {
-      "x": 846,
-      "y": 242
-    }
-  },
-  {
-    "type": "shape.modules.Circle",
-    "fPoint": {
-      "x": 846,
-      "y": 368
-    },
-    "sPoint": {
-      "x": 673,
-      "y": 195
+      "x": 459,
+      "y": 171
     }
   }
 ]

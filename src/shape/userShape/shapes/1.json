@@ -1,0 +1,37 @@
+{
+  "subShapes": [
+    {
+      "type": "shape.modules.Square",
+      "fPoint": {
+        "x": 0,
+        "y": 0
+      },
+      "sPoint": {
+        "x": 17,
+        "y": 17
+      }
+    },
+    {
+      "type": "shape.modules.Square",
+      "fPoint": {
+        "x": 17,
+        "y": 32
+      },
+      "sPoint": {
+        "x": 57,
+        "y": 72
+      }
+    }
+  ],
+  "height": 72,
+  "width": 57,
+  "type": "shape.userShape.UserShape",
+  "fPoint": {
+    "x": 0,
+    "y": 0
+  },
+  "sPoint": {
+    "x": 0,
+    "y": 0
+  }
+}

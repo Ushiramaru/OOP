@@ -4,7 +4,7 @@ import shape.Shape;
 
 import java.util.ArrayList;
 
-public class ShapeArray {
+public class ShapesArray {
 
     private static ArrayList<Shape> shapeArray = new ArrayList<>();
 

@@ -9,8 +9,8 @@ public class Circle extends Shape {
     @Override
     public Shape clone() {
         Shape cloneShape = new Circle();
-        cloneShape.setFPoints(fPoint);
-        cloneShape.setSPoints(sPoint);
+        cloneShape.setFPoints(new Point(fPoint.x,fPoint.y));
+        cloneShape.setSPoints(new Point(sPoint.x,sPoint.y));
         return cloneShape;
     }
 

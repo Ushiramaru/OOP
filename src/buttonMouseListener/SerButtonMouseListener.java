@@ -2,7 +2,7 @@ package buttonMouseListener;
 
 import com.google.gson.*;
 import shape.Shape;
-import shapeArray.ShapeArray;
+import shapeArray.ShapesArray;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -30,7 +30,7 @@ public class SerButtonMouseListener implements MouseListener {
         builder.registerTypeAdapter(Shape.class, new JsonDeserializerWithInheritance<Shape>());
         Gson gson = builder.setPrettyPrinting().create();
 
-        String derivedClass1Json = gson.toJson(ShapeArray.getShapeArray().toArray());
+        String derivedClass1Json = gson.toJson(ShapesArray.getShapeArray().toArray());
 
         WriteInFile("test.json",derivedClass1Json);
     }
@@ -50,4 +50,5 @@ public class SerButtonMouseListener implements MouseListener {
     public void mouseReleased(MouseEvent e) {
 
     }
+
 }

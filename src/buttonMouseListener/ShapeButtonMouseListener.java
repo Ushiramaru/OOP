@@ -2,21 +2,27 @@ package buttonMouseListener;
 
 import pen.Pen;
 import shape.Shape;
+import shape.userShape.UserShape;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ShapeButtonMouseListener implements MouseListener {
 
-    private Shape selectedShape;
+    private Shape shape;
 
-    public ShapeButtonMouseListener(Shape selectedShape) {
+    public ShapeButtonMouseListener(Shape shape) {
         super();
-        this.selectedShape = selectedShape;
+        if (shape != null) {
+            shape.setFPoints(new Point());
+            shape.setSPoints(new Point());
+        }
+        this.shape = shape;
     }
 
     public void mouseClicked(MouseEvent e) {
-        Pen.setSelectedShape(selectedShape);
+        Pen.setSelectedShape(shape);
     }
 
     public void mouseEntered(MouseEvent e) {
@@ -34,4 +40,5 @@ public class ShapeButtonMouseListener implements MouseListener {
     public void mouseReleased(MouseEvent e) {
 
     }
+
 }

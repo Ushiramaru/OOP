@@ -8,29 +8,53 @@ public class Line extends Shape {
 
     public Shape clone() {
         Shape cloneShape = new Line();
-        cloneShape.setFPoints(fPoint);
-        cloneShape.setSPoints(sPoint);
+        cloneShape.setFPoints(new Point(fPoint.x,fPoint.y));
+        cloneShape.setSPoints(new Point(sPoint.x,sPoint.y));
         return cloneShape;
     }
 
     public ArrayList<Point> calculatePoints() {
         ArrayList<Point> pointArray = new ArrayList<>();
-        Point helpPoint;
-        if (fPoint.x == sPoint.x) {
-            for (int i = Integer.min(fPoint.y,sPoint.y); i <= Integer.max(fPoint.y,sPoint.y); i+=1) {
-                helpPoint = new Point(fPoint.x, i);
-                pointArray.add(helpPoint);
+        int dx = (sPoint.x > fPoint.x) ? (sPoint.x - fPoint.x) : (fPoint.x - sPoint.x);
+        int dy = (sPoint.y > fPoint.y) ? (sPoint.y - fPoint.y) : (fPoint.y - sPoint.y);
+        int sx = (sPoint.x >= fPoint.x) ? (1) : (-1);
+        int sy = (sPoint.y >= fPoint.y) ? (1) : (-1);
+
+        if (dy < dx) {
+            int d = (dy << 1) - dx;
+            int d1 = dy << 1;
+            int d2 = (dy - dx) << 1;
+            pointArray.add(new Point(fPoint.x,fPoint.y));
+            int x = fPoint.x + sx;
+            int y = fPoint.y;
+            for (int i = 1; i <= dx; i++) {
+                if (d > 0) {
+                    d += d2;
+                    y += sy;
+                } else {
+                    d += d1;
+                }
+                pointArray.add(new Point(x,y));
+                x+=sx;
             }
         } else {
-            pointArray.add(fPoint);
-            for (float i = (float) (Integer.min(fPoint.x,sPoint.x)+0.001*Math.abs(fPoint.x - sPoint.x)); i < Integer.max(fPoint.x,sPoint.x); i+=0.001*Math.abs(fPoint.x - sPoint.x)) {
-                helpPoint = new Point();
-                helpPoint.x = Math.round(i);
-                helpPoint.y = Math.round((float) (fPoint.y - sPoint.y) / (float) (fPoint.x - sPoint.x) * (i - fPoint.x) + fPoint.y);
-                //System.out.println(helpPoint.x+":"+helpPoint.y);
-                pointArray.add(helpPoint);
+            int d = (dx << 1) - dy;
+            int d1 = dx << 1;
+            int d2 = (dx - dy) << 1;
+            pointArray.add(new Point(fPoint.x, fPoint.y));
+            int x = fPoint.x;
+            int y = fPoint.y + sy;
+            for (int i = 1; i <= dy; i++) {
+                if (d > 0) {
+                    d += d2;
+                    x += sx;
+                }
+                else {
+                    d += d1;
+                }
+                pointArray.add(new Point(x,y));
+                y+=sy;
             }
-            pointArray.add(sPoint);
         }
         return pointArray;
     }

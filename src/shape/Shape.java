@@ -24,6 +24,14 @@ public abstract class Shape {
         this.sPoint = sPoint;
     }
 
+    public Point getFPoint() {
+        return fPoint;
+    }
+
+    public Point getSPoint() {
+        return sPoint;
+    }
+
     public ArrayList<Point> getPointArray() {
         return this.calculatePoints();
     }
@@ -31,4 +39,5 @@ public abstract class Shape {
     public abstract Shape clone();
 
     protected abstract ArrayList<Point> calculatePoints();
+
 }

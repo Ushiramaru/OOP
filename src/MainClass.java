@@ -7,9 +7,10 @@ import java.nio.charset.StandardCharsets;
 public class MainClass {
 
     public static void main(String[] args) {
-        String pathLoad = new File(URLDecoder.decode(MainClass.class.getProtectionDomain().getCodeSource().getLocation().getPath(), StandardCharsets.UTF_8)).getPath();
-        pathLoad = pathLoad.substring(0,pathLoad.lastIndexOf("\\"));
-        ShapesLoader loader = new ShapesLoader(pathLoad + "\\shape\\modules\\", "shape.modules",ClassLoader.getSystemClassLoader());
+//        String pathLoad = new File(URLDecoder.decode(MainClass.class.getProtectionDomain().getCodeSource().getLocation().getPath(), StandardCharsets.UTF_8)).getPath();
+//        pathLoad = pathLoad.substring(0,pathLoad.lastIndexOf("\\"));
+//        ShapesLoader loader = new ShapesLoader(pathLoad + "\\shape\\modules\\", "shape.modules",ClassLoader.getSystemClassLoader());
+        ShapesLoader loader = new ShapesLoader("D:\\OOP\\out\\production\\OOP\\shape\\modules\\", "shape.modules",ClassLoader.getSystemClassLoader());
         loader.startLoad();
 
         Paint mainFrame = new Paint("недоPaint");

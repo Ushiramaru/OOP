@@ -1,0 +1,59 @@
+{
+  "subShapes": [
+    {
+      "type": "shape.modules.Square",
+      "fPoint": {
+        "x": 0,
+        "y": 0
+      },
+      "sPoint": {
+        "x": 21,
+        "y": 21
+      }
+    },
+    {
+      "type": "shape.modules.Square",
+      "fPoint": {
+        "x": 21,
+        "y": 58
+      },
+      "sPoint": {
+        "x": 72,
+        "y": 109
+      }
+    },
+    {
+      "type": "shape.modules.Square",
+      "fPoint": {
+        "x": 72,
+        "y": 132
+      },
+      "sPoint": {
+        "x": 105,
+        "y": 165
+      }
+    },
+    {
+      "type": "shape.modules.Square",
+      "fPoint": {
+        "x": 105,
+        "y": 199
+      },
+      "sPoint": {
+        "x": 183,
+        "y": 277
+      }
+    }
+  ],
+  "height": 277,
+  "width": 183,
+  "type": "shape.userShape.UserShape",
+  "fPoint": {
+    "x": 0,
+    "y": 0
+  },
+  "sPoint": {
+    "x": 0,
+    "y": 0
+  }
+}
