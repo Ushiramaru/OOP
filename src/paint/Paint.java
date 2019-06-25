@@ -1,5 +1,6 @@
 package paint;
 
+import Configuration.Configurator;
 import buttonMouseListener.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,7 +15,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,17 +24,19 @@ public class Paint extends JFrame {
     private ArrayList<Shape> shapes;
     private Canvas canvas;
     private JPanel panelUserShape;
+    private Configurator configurator;
 
-    public Paint(String name) {
-        super(name);
+    public Paint(Configurator configurator) {
+        super(configurator.getPaintTitle());
+        this.configurator = configurator;
     }
 
     public void setDefaultConfiguration() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBackground(Color.WHITE);
-        this.setBounds(100, 100, 900, 500);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setBackground(configurator.getPaintColor());
+        this.setBounds(100, 100, configurator.getPaintWidth(), configurator.getPaintHeight());
         this.setVisible(true);
-        this.setLayout(new BorderLayout());
+        this.setLayout(null);
     }
 
     public void setShapes(ArrayList<Shape> shapes) {
@@ -44,9 +46,9 @@ public class Paint extends JFrame {
     public void addUserShapeButton(Shape shape) {
         JButton button = new JButton(panelUserShape.getComponentCount()+1+"");
         panelUserShape.add(button);
-        button.setBackground(Color.MAGENTA);
-        button.setSize(50, 25);
-        button.setLocation(10,(panelUserShape.getComponentCount()+1)*(40));
+        button.setBackground(configurator.getButtonUserShapeColor());
+        button.setSize(configurator.getButtonUserShapeWidth(), configurator.getButtonUserShapeHeight());
+        button.setLocation(5, (button.getHeight()+configurator.getPanelUserShapeGapY())*panelUserShape.getComponentCount()+configurator.getPanelUserShapeGapY());
         button.setVisible(true);
         button.addMouseListener(new ShapeButtonMouseListener(shape));
 
@@ -65,7 +67,7 @@ public class Paint extends JFrame {
         }
     }
 
-    public void deserUserShape() {
+    public void deserializeUserShape() {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Shape.class, new JsonDeserializerWithInheritance<Shape>());
         Gson gson = builder.setPrettyPrinting().create();
@@ -76,7 +78,6 @@ public class Paint extends JFrame {
             return;
         }
         for (String jsonFileName : files) {
-//            System.out.println(jsonFileName);
             String json= null;
             try {
                 String s = "";
@@ -104,95 +105,94 @@ public class Paint extends JFrame {
     }
 
     public void setPaintConfiguration() {
-        JPanel panelButton = new JPanel();
-        panelButton.setBackground(Color.GRAY);
-        panelButton.setSize(this.getWidth(), 200);
-        panelButton.setVisible(true);
-        panelButton.setLayout(new FlowLayout());
-        this.add(panelButton, BorderLayout.BEFORE_FIRST_LINE);
+        JPanel panelShape = new JPanel();
+        this.add(panelShape);
+        panelShape.setBackground(configurator.getPanelShapeColor());
+        panelShape.setSize(this.getWidth(), configurator.getPanelShapeHeight());
+        panelShape.setLocation(0,0);
+        panelShape.setVisible(true);
+        panelShape.setLayout(null);
 
         panelUserShape = new JPanel();
-        panelUserShape.setBackground(Color.GRAY);
-        panelUserShape.setSize(100, this.getHeight());
+        this.add(panelUserShape);
+        panelUserShape.setBackground(configurator.getPanelUserShapeColor());
+        panelUserShape.setSize(configurator.getPanelUserShapeWidth(), this.getHeight()-panelShape.getHeight());
+        panelUserShape.setLocation(0, panelShape.getHeight());
         panelUserShape.setVisible(true);
         panelUserShape.setLayout(null);
-        this.add(panelUserShape, BorderLayout.NORTH);
 
-        deserUserShape();
+        deserializeUserShape();
 
-        JButton buttonDeser = new JButton();
-        buttonDeser.setBackground(Color.MAGENTA);
-        buttonDeser.setText("Deser");
-        buttonDeser.setSize(50,panelButton.getHeight()-100);
-        buttonDeser.setVisible(true);
-        buttonDeser.addMouseListener(new DeserButtonMouseListener());
-        panelButton.add(buttonDeser);
+        int buttonShapeCount = 0;
 
-        JButton buttonSer = new JButton();
-        buttonSer.setBackground(Color.MAGENTA);
-        buttonSer.setText("Ser");
-        buttonSer.setSize(50,panelButton.getHeight()-100);
-        buttonSer.setVisible(true);
-        buttonSer.addMouseListener(new SerButtonMouseListener());
-        panelButton.add(buttonSer);
+        JButton buttonDeserialize = new JButton();
+        panelShape.add(buttonDeserialize);
+        buttonDeserialize.setBackground(configurator.getButtonShapeColor());
+        buttonDeserialize.setText("Deserialize");
+        buttonDeserialize.setSize(configurator.getButtonShapeWidth(), configurator.getButtonShapeHeight());
+        buttonDeserialize.setLocation(configurator.getPanelShapeGapX()*(buttonShapeCount+1)+buttonShapeCount*configurator.getButtonShapeWidth(), (configurator.getPanelShapeHeight()-configurator.getButtonShapeHeight())/2);
+        buttonDeserialize.setVisible(true);
+        buttonDeserialize.addMouseListener(new DeserButtonMouseListener());
+        buttonShapeCount++;
+
+        JButton buttonSerialize = new JButton();
+        panelShape.add(buttonSerialize);
+        buttonSerialize.setBackground(configurator.getButtonShapeColor());
+        buttonSerialize.setText("Serialize");
+        buttonSerialize.setSize(configurator.getButtonShapeWidth(), configurator.getButtonShapeHeight());
+        buttonSerialize.setLocation(configurator.getPanelShapeGapX()*(buttonShapeCount+1)+buttonShapeCount*configurator.getButtonShapeWidth(), (configurator.getPanelShapeHeight()-configurator.getButtonShapeHeight())/2);
+        buttonSerialize.setVisible(true);
+        buttonSerialize.addMouseListener(new SerButtonMouseListener());
+        buttonShapeCount++;
 
         for (Shape shape : shapes) {
             JButton newShape  = new JButton();
-            newShape.setBackground(Color.MAGENTA);
+            panelShape.add(newShape);
+            newShape.setBackground(configurator.getButtonShapeColor());
             newShape.setText(shape.getClass().getSimpleName());
-            newShape.setSize(50, panelButton.getHeight()-10);
+            newShape.setSize(configurator.getButtonShapeWidth(), configurator.getButtonShapeHeight());
+            newShape.setLocation(configurator.getPanelShapeGapX()*(buttonShapeCount+1)+buttonShapeCount*configurator.getButtonShapeWidth(), (configurator.getPanelShapeHeight()-configurator.getButtonShapeHeight())/2);
             newShape.setVisible(true);
             newShape.addMouseListener(new ShapeButtonMouseListener(shape));
-            panelButton.add(newShape);
+            buttonShapeCount++;
         }
 
         JButton button  = new JButton();
-        button.setBackground(Color.MAGENTA);
+        panelShape.add(button);
+        button.setBackground(configurator.getButtonShapeColor());
         button.setText("CreateShape");
-        button.setSize(50, panelButton.getHeight()-10);
+        button.setSize(configurator.getButtonShapeWidth(), configurator.getButtonShapeHeight());
+        button.setLocation(configurator.getPanelShapeGapX()*(buttonShapeCount+1)+buttonShapeCount*configurator.getButtonShapeWidth(), (configurator.getPanelShapeHeight()-configurator.getButtonShapeHeight())/2);
         button.setVisible(true);
         button.addMouseListener(new UserShapeCreatorMouseListener());
-        panelButton.add(button);
-
-//        newShape  = new JButton();
-//        newShape.setBackground(Color.MAGENTA);
-//        newShape.setText("UserShape");
-//        newShape.setSize(50, panelButton.getHeight()-10);
-//        newShape.setVisible(true);
-//        UserShapeCreator s = new UserShapeCreator();
-//        Shape line = new Rectangle();
-//        line.setFPoints(new Point(2,4));
-//        line.setSPoints(new Point(4,2));
-//        s.addSubShape(line);
-//        line = new Rectangle();
-//        line.setFPoints(new Point(4,4));
-//        line.setSPoints(new Point(3,3));
-//        s.addSubShape(line);
-//        newShape.addMouseListener(new ShapeButtonMouseListener(s.getUserShape()));
-//        panelButton.add(newShape);
+        buttonShapeCount++;
 
         JButton buttonClear = new JButton();
-        buttonClear.setBackground(Color.MAGENTA);
+        panelShape.add(buttonClear);
+        buttonClear.setBackground(configurator.getButtonShapeColor());
         buttonClear.setText("Clear");
-        buttonClear.setSize(50,panelButton.getHeight()-10);
+        buttonClear.setSize(configurator.getButtonShapeWidth(), configurator.getButtonShapeHeight());
+        buttonClear.setLocation(configurator.getPanelShapeGapX()*(buttonShapeCount+1)+buttonShapeCount*configurator.getButtonShapeWidth(), (configurator.getPanelShapeHeight()-configurator.getButtonShapeHeight())/2);
         buttonClear.setVisible(true);
         buttonClear.addMouseListener(new ShapeButtonMouseListener(null));
-        panelButton.add(buttonClear);
+
 
         panelDraw = new JPanel();
-        panelDraw.setBackground(Color.WHITE);
-        panelDraw.setSize(this.getWidth(), this.getHeight() - panelButton.getHeight());
-        panelDraw.setVisible(true);
         this.add(panelDraw);
+        panelDraw.setBackground(configurator.getPaintColor());
+        panelDraw.setSize(this.getWidth()-panelUserShape.getWidth(), this.getHeight()-panelShape.getHeight());
+        panelDraw.setLocation(panelUserShape.getWidth(), panelShape.getHeight());
+        panelDraw.setVisible(true);
     }
 
     public void setGraphics() {
         Canvas canvas = new Canvas();
         this.canvas = canvas;
-        canvas.setSize(panelDraw.getWidth(),panelDraw.getHeight());
-        canvas.setBackground(Color.WHITE);
-        canvas.addMouseListener(new DrawPanelMouseListener());
         panelDraw.add(canvas);
+        canvas.setBackground(configurator.getPaintColor());
+        canvas.setSize(panelDraw.getWidth(),panelDraw.getHeight());
+        canvas.setLocation(0,0);
+        canvas.addMouseListener(new DrawPanelMouseListener());
         Pen.setGraphics(canvas.getGraphics());
     }
 

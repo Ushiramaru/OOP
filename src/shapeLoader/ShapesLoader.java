@@ -1,3 +1,5 @@
+package shapeLoader;
+
 import shape.Shape;
 
 import java.io.File;
